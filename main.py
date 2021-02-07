@@ -52,6 +52,7 @@ def best_move(board):
             move = [x, y]
 
     board[move[0], move[1]] = ai
+    print(board)
     if check_winner(board) == human:
         print("Congratulations you won the game")
     elif check_winner(board) == ai:
@@ -101,7 +102,7 @@ def max_value(board, depth):
     return best_score
 
 def make_move(board):
-    print(board)
+
     current_move = human
     if current_move == human:
         x = int(input("Please enter X co-ordinate"))
@@ -120,19 +121,8 @@ def make_move(board):
             make_move(board)
 
 
-
-
-
-
 if __name__ == '__main__':
     board = np.full((3, 3), '', dtype=str)
-    current_move = human
+    print(board)
     make_move(board)
-
-
-
-
-
-
-
 

@@ -106,18 +106,21 @@ def make_move(board):
     elif current_move == human:
         x = int(input("Please enter X co-ordinate: "))
         y = int(input("Please enter Y co-ordinate: "))
-
-        if board[x, y] == '':
-            board[x, y] = human
-            if check_winner(board) == human:
-                print("Congratulations you won the game")
-            elif check_winner(board) == 'tie':
-                print_board(board)
-                print("It's a tie")
+        try:
+            if board[x, y] == '':
+                board[x, y] = human
+                if check_winner(board) == human:
+                    print("Congratulations you won the game")
+                elif check_winner(board) == 'tie':
+                    print_board(board)
+                    print("It's a tie")
+                else:
+                    best_move(board)
             else:
-                best_move(board)
-        else:
-            print("Position is already occupied, Please enter new pos:")
+                print("Position is already occupied, Please enter new pos:")
+                make_move(board)
+        except:
+            print("Invalid Position. Please enter again:")
             make_move(board)
 
 def print_board(board):

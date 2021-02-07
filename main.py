@@ -53,14 +53,7 @@ def best_move(board):
 
     board[move[0], move[1]] = ai
     print(board)
-    if check_winner(board) == human:
-        print("Congratulations you won the game")
-    elif check_winner(board) == ai:
-        print("Ai won the game")
-    elif check_winner(board) == 'tie':
-        print('It is a tie')
-    else:
-        make_move(board)
+    make_move(board)
 
 
 def min_value(board, depth):
@@ -109,13 +102,18 @@ def make_move(board):
         y = int(input("Please enter Y co-ordinate"))
         if board[x, y] == '':
             board[x, y] = human
-            best_move(board)
+
             if check_winner(board) == human:
+                print(board)
                 print("Congratulations you won the game")
             elif check_winner(board) == ai:
+                print(board)
                 print("Ai won the game")
             elif check_winner(board) == 'tie':
+                print(board)
                 print('It is a tie')
+            else:
+                best_move(board)
         else:
             print("Position is already occupied, Please enter new pos:")
             make_move(board)
@@ -125,4 +123,3 @@ if __name__ == '__main__':
     board = np.full((3, 3), '', dtype=str)
     print(board)
     make_move(board)
-

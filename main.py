@@ -1,8 +1,11 @@
 import numpy as np
 import math
-
+import os
 
 ai, human = 'X', 'O'
+
+def clear():
+    os.system('cls')
 
 def check_winner(board):
     rows, cols = np.shape(board)
@@ -95,26 +98,30 @@ def max_value(board, depth):
     return best_score
 
 def make_move(board):
-
     current_move = human
-    if check_winner(board) == human:
-        print("Congratulations you won the game")
-    elif check_winner(board) == ai:
+    if check_winner(board) == ai:
         print("Ai won the game")
     elif check_winner(board) == 'tie':
         print('It is a tie')
     elif current_move == human:
-        x = int(input("Please enter X co-ordinate"))
-        y = int(input("Please enter Y co-ordinate"))
+        x = int(input("Please enter X co-ordinate: "))
+        y = int(input("Please enter Y co-ordinate: "))
 
         if board[x, y] == '':
             board[x, y] = human
-            best_move(board)
+            if check_winner(board) == human:
+                print("Congratulations you won the game")
+            elif check_winner(board) == 'tie':
+                print_board(board)
+                print("It's a tie")
+            else:
+                best_move(board)
         else:
             print("Position is already occupied, Please enter new pos:")
             make_move(board)
 
 def print_board(board):
+    clear()
     for index, elems in enumerate(board):
         for idx, val in enumerate(elems):
             if idx != 2:
